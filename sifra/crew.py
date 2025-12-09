@@ -449,11 +449,24 @@ class SifraAdvCrew:
                     description=f"""
                     USER'S QUESTION: "{query_text}"
                     
-                    Answer this question using your tools and send the response via slack_replier.
-                    Remember: Search ONE term at a time, read files, format well, and call slack_replier!
+                    MANDATORY STEPS (DO ALL THREE):
+                    
+                    STEP 1 - SEARCH: Use semantic_code_search to find relevant code
+                    
+                    STEP 2 - ANALYZE: Study the search results and prepare a clear answer with:
+                    - File paths and code snippets
+                    - Clear explanation of the flow
+                    - Relevant patterns found
+                    
+                    STEP 3 - SEND TO SLACK (REQUIRED!): 
+                    You MUST call the slack_replier tool with your formatted answer!
+                    Example: slack_replier(message="📝 AGENT UPDATE FLOW\\n\\n[your answer here]")
+                    
+                    ⚠️ YOUR TASK IS NOT COMPLETE UNTIL YOU CALL slack_replier!
+                    Do NOT just say you sent it - actually call the tool!
                     """,
                     agent=self.code_assistant.agent,
-                    expected_output="Detailed code analysis sent to Slack via slack_replier"
+                    expected_output="MUST include actual slack_replier tool call with the answer"
                 )
                 
                 # Create crew with code assistant workflow
