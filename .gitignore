@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+data/logs/
+
+# Config with secrets
+config.yaml
+
+# Vector stores (large files)
+data/code_vectors/
+data/confluence_vectors/
+
+# HAR files
+data/har/*.har
+
+# Misc
+*.bak
+*.tmp

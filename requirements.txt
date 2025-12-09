@@ -1,0 +1,30 @@
+# Sifra Hackathon - Requirements
+
+# AI/ML
+crewai>=0.70.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+
+# HTTP & APIs
+requests>=2.31.0
+httpx>=0.27.0
+
+# Slack
+slack-sdk>=3.27.0
+
+# Data validation
+pydantic>=2.7.0
+
+# Configuration
+pyyaml>=6.0.0
+python-dotenv>=1.0.0
+
+# HTML parsing
+beautifulsoup4>=4.12.0
+
+# RAG / Vector Store
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+
+# Confluence
+atlassian-python-api>=3.41.0

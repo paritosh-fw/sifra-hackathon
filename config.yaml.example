@@ -1,0 +1,72 @@
+# Sifra Hackathon Configuration
+# Copy this to config.yaml and fill in your credentials
+
+# LLM Configuration (Cloudverse)
+llm:
+  provider: "cloudverse"
+  model: "anthropic-claude-3-5-sonnet-v2"
+  base_url: "https://cloudverse.freshworkscorp.com/api/v1"
+  api_key: "YOUR_CLOUDVERSE_API_KEY"
+  max_tokens: 8192
+  temperature: 0.7
+  context_window: 200000
+  max_context_usage: 0.8
+
+# Slack Configuration
+slack:
+  bot_token: "xoxb-YOUR-SLACK-BOT-TOKEN"
+  channel_id: "YOUR_CHANNEL_ID"
+  channel_name: "sifra-hackathon"
+
+# Freshdesk Configuration
+freshdesk:
+  api_key: "YOUR_FRESHDESK_API_KEY"
+  domain: "support"
+
+# Freshops Admin Configuration
+freshops:
+  domain: "freshops-admin.freshservice.com"
+  session_cookie: "YOUR_FRESHOPS_SESSION_COOKIE"
+
+# Confluence Configuration (for RAG knowledge base)
+confluence:
+  base_url: "https://confluence.freshworks.com"
+  username: "your.email@freshworks.com"
+  api_token: "YOUR_CONFLUENCE_PAT"
+  root_page_id: "470686414"
+  vector_store:
+    type: "chromadb"
+    persist_directory: "./data/confluence_vectors"
+    embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+    chunk_size: 1000
+    chunk_overlap: 200
+    top_k: 5
+
+# Codebase Configuration
+codebase:
+  path: "/path/to/your/codebase"
+  vector_store:
+    persist_directory: "./data/code_vectors"
+
+# HAR Files Configuration
+har:
+  directory: "/path/to/har/files"
+
+# Haystack Configuration
+haystack:
+  cookies:
+    HAYSAuthSessionID-0: "YOUR_HAYSTACK_SESSION_COOKIE"
+    userEmail: "your.email@freshworks.com"
+    AWSALBAuthNonce: "YOUR_NONCE"
+  default_user_email: "your.email@freshworks.com"
+  pod_urls:
+    us: "https://logs.haystack.es"
+    in: "https://logs-in.haystack.es"
+    eu: "https://logs-euc.haystack.es"
+    au: "https://logs-au.haystack.es"
+
+# Data Paths
+data:
+  logs_path: "data/logs"
+  code_path: "data/code"
+  reports_path: "data/reports"
