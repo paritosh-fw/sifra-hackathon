@@ -95,12 +95,25 @@ pip install -r requirements.txt
 cp config.yaml.example config.yaml
 # Edit config.yaml with your API keys
 
+# Index the codebase for semantic search (required for first run)
+python -c "from sifra.utils.code_rag import CodeRAG; from sifra.utils.config import Config; CodeRAG(Config()).index_codebase()"
+
 # Run Sifra (listens for Slack messages)
 python run.py
-
-# Or analyze a single ticket
-python run.py "https://support.freshdesk.com/a/tickets/12345"
 ```
+
+## 🔧 Configuration
+
+Edit `config.yaml` with your credentials:
+
+| Config | Description |
+|--------|-------------|
+| `llm.api_key` | Cloudverse API key for Claude LLM |
+| `slack.bot_token` | Slack bot token (xoxb-...) |
+| `slack.channel_id` | Slack channel ID to monitor |
+| `freshdesk.api_key` | Freshdesk API key |
+| `codebase.path` | Path to codebase for semantic search |
+| `haystack.cookies` | Haystack authentication cookies |
 
 ## 📁 Project Structure
 
@@ -114,10 +127,11 @@ sifra-hackathon/
 │   ├── code_vectors/      # Code embeddings (ChromaDB)
 │   └── confluence_vectors/# Confluence embeddings
 └── sifra/
-    ├── agents/            # AI Agents
+    ├── agents/            # AI Agents (8 total)
     │   ├── query_picker.py
     │   ├── query_router_agent.py
     │   ├── support_ticket_reader.py
+    │   ├── account_agent.py
     │   ├── log_url_generator.py
     │   ├── code_analysis_agent.py
     │   ├── code_assistant_agent.py
