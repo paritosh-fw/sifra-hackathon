@@ -21,7 +21,8 @@ class Config:
             config_path (str): Path to configuration file
         """
         if config_path is None:
-            config_path = Path(__file__).parent.parent / "config.yaml"
+            # Go up from utils/ -> sifra/ -> project root
+            config_path = Path(__file__).parent.parent.parent / "config.yaml"
         
         self.config_path = Path(config_path)
         self._load_config()
@@ -130,3 +131,54 @@ class Config:
     def freshops(self) -> Dict[str, Any]:
         """Get Freshops configuration"""
         return self.get('freshops', {})
+    
+    @property
+    def codebase(self) -> Dict[str, Any]:
+        """Get codebase configuration"""
+        return self.get('codebase', {})
+    
+    @property
+    def har(self) -> Dict[str, Any]:
+        """Get HAR configuration"""
+        return self.get('har', {})
+
+
+# Global config instance
+_config_instance = None
+
+
+def load_config(config_path: str = None) -> Dict[str, Any]:
+    """
+    Load configuration and return as dictionary
+    
+    Args:
+        config_path (str): Optional path to config file
+        
+    Returns:
+        Dict[str, Any]: Configuration dictionary
+    """
+    global _config_instance
+    
+    if _config_instance is None:
+        # Look for config.yaml in project root
+        if config_path is None:
+            config_path = Path(__file__).parent.parent.parent / "config.yaml"
+        _config_instance = Config(config_path)
+    
+    return _config_instance._config
+
+
+def get_config() -> Config:
+    """
+    Get the Config instance
+    
+    Returns:
+        Config: Configuration instance
+    """
+    global _config_instance
+    
+    if _config_instance is None:
+        config_path = Path(__file__).parent.parent.parent / "config.yaml"
+        _config_instance = Config(config_path)
+    
+    return _config_instance
